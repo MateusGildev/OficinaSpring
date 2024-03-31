@@ -28,6 +28,10 @@ public class Oficina {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private final LocalDate dataOs = LocalDate.now();
 
+    @ManyToMany
+    @JoinTable(name = "oficina_peca", joinColumns = @JoinColumn(name = "oficina_id"),inverseJoinColumns = @JoinColumn(name = "peca_id"))
+    private List<Peca> pecas;
+
     @NotNull
     @NotBlank
     @Size(max = 64)

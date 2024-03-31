@@ -26,6 +26,8 @@ public class DbService {
 
     @Autowired
     private ViagemRepository viagemRepository;
+    @Autowired
+    private PecaRepository pecaRepository;
 
 
     public void initDB() {
@@ -38,9 +40,14 @@ public class DbService {
         Pessoa pessoa1 = new Pessoa(null, "Mateus", viagem1, 22, 836762647);
         pessoaRepository.save(pessoa1);
 
+        Peca peca1 = new Peca(null,oficinaRepository.findAll(),"Motor",4.800,5);
+        pecaRepository.save(peca1);
 
-        Oficina oficina1 = new Oficina(null,"Teste oficina 1");
+        Oficina oficina1 = new Oficina(null,pecaRepository.findAll(),"Oficina Teste");
         oficinaRepository.save(oficina1);
+
+        Oficina oficina2 = new Oficina(null,pecaRepository.findById(1),"Oficina Teste 2");
+        oficinaRepository.save(oficina2);
 
         Veiculo veiculo1 = new Veiculo(null, "ABC123", viagem1, "Fiat", 2005);
         veiculoRepository.save(veiculo1);
